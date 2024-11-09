@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  certbot:
+    build:
+      context: .
+    container_name: certbot-ovh
+    volumes:
+      - ./certs:/etc/letsencrypt
+    environment:
+      - CERTBOT_DOMAIN=k-lfa.info
+    command: certonly --dns-ovh --dns-ovh-credentials /root/.ovh.ini -d *.$domain --non-interactive --agree-tos --register-unsafely-without-email
